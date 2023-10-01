@@ -1,0 +1,37 @@
+<div>
+  <h1>Students Catalogue</h1>
+  <h2>{{ isEditKnowledge ? 'Edit Knowledge' : 'Add new Knowledge' }}</h2>
+
+  <form [formGroup]="KnowledgeForm" #form='ngForm' (submit)="onSubmit()">
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Your title" formControlName="title"  [(ngModel)]="knowledgeData.title" required>
+      <div *ngIf="title.invalid && (title.dirty || title.touched)">
+        <mat-error *ngIf="title.errors?.['maxLength']">You must enter up to 60 characters</mat-error>
+        <mat-error *ngIf="title.errors?.['required']">Title is required.</mat-error>
+      </div>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>urlToImage</mat-label>
+      <input matInput placeholder="Your urlToImage" formControlName="urlToImage" [(ngModel)]="knowledgeData.urlToImage" required>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Summary</mat-label>
+      <input matInput placeholder="Your Summary" formControlName="summary"  [(ngModel)]="knowledgeData.summary" required>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%">
+      <mat-label>Content</mat-label>
+      <input matInput placeholder="Your Content" formControlName="content"  [(ngModel)]="knowledgeData.content" required>
+    </mat-form-field>
+    <ng-container *ngIf="isEditKnowledge; else elseTemplate">
+      <button mat-button color="primary" >Save</button>
+      <button mat-button color="warn" (click)="cancelKnowledge()" aria-label="reset your data form">Cancel</button>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <button mat-button color="primary" (click)="addKnowledge()">Add</button>
+    </ng-template>
+  </form>
+</div>

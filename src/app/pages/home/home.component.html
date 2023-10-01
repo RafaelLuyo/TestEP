@@ -1,0 +1,39 @@
+<div>
+<mat-card class="card-home">
+  <mat-card-title>Individual Knowledge</mat-card-title>
+
+</mat-card>
+
+<table mat-table [dataSource] ="dataSource" class="mat-elevation-z8" matSort>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>#Id</th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+  <ng-container matColumnDef="urlToImage">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>urlToImage</th>
+    <td mat-cell *matCellDef="let element">
+      <img src="{{element.urlToImage}}" style="width: 50px">
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="summary">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>summary</th>
+    <td mat-cell *matCellDef="let element"> {{element.summary}}  </td>
+
+  </ng-container>
+  <ng-container matColumnDef="content">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>content</th>
+    <td mat-cell *matCellDef="let element"> {{element.content}} </td>
+  </ng-container>
+
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]"
+               showFirstLastButtons></mat-paginator>
+  </div>
